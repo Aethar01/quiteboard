@@ -11,10 +11,8 @@ RUN npm install --omit=dev
 COPY server.mjs ./
 COPY public ./public
 
-RUN mkdir -p /app/data/boards /app/data/assets \
-    && chown -R node:node /app
+RUN mkdir -p /app/data/boards /app/data/assets
 
-USER node
 EXPOSE 3000
 VOLUME ["/app/data"]
 
