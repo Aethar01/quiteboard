@@ -1,0 +1,13 @@
+services:
+  quiteboard:
+    build: .
+    container_name: quiteboard
+    restart: unless-stopped
+    ports:
+      - "9680:3000"
+    environment:
+      PORT: "3000"
+      DATA_DIR: /app/data
+      MAX_UPLOAD_MB: "50"
+    volumes:
+      - ./data:/app/data
