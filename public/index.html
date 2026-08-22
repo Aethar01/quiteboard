@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Quiteboard</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div class="brand">Quiteboard</div>
+      <input id="boardName" class="board-name" value="Untitled board" aria-label="Board name">
+      <div id="presence" class="presence"></div>
+      <button id="boardsBtn" class="secondary">Boards</button>
+    </header>
+
+    <div class="workspace">
+      <aside class="toolbar" aria-label="Tools">
+        <button class="tool active" data-tool="select">Select</button>
+        <button class="tool" data-tool="pen">Pen</button>
+        <button class="tool" data-tool="highlighter">Marker</button>
+        <button class="tool" data-tool="eraser">Eraser</button>
+        <button class="tool" data-tool="text">Text</button>
+        <button class="tool" data-tool="rect">Rectangle</button>
+        <button class="tool" data-tool="pan">Pan</button>
+        <hr>
+        <button id="imageBtn">Image</button>
+        <button id="pdfBtn">PDF</button>
+        <hr>
+        <label>Colour <input id="color" type="color" value="#111827"></label>
+        <label>Size <input id="size" type="range" min="1" max="30" value="4"></label>
+        <button id="deleteBtn" class="danger">Delete</button>
+        <button id="lockBtn">Lock/Unlock</button>
+        <button id="fitBtn">Fit</button>
+      </aside>
+
+      <main id="viewport" class="viewport" tabindex="0">
+        <canvas id="board"></canvas>
+        <div id="cursors" class="cursors"></div>
+        <div class="zoom-hud"><span id="zoomValue">100%</span></div>
+      </main>
+    </div>
+  </div>
+
+  <dialog id="boardsDialog">
+    <form method="dialog" class="dialog-card">
+      <div class="dialog-head">
+        <h2>Boards</h2>
+        <button value="cancel" class="secondary">Close</button>
+      </div>
+      <div class="new-board-row">
+        <input id="newBoardName" placeholder="New board name" value="Untitled board">
+        <button id="createBoardBtn" type="button">Create board</button>
+      </div>
+      <div id="boardList" class="board-list"></div>
+    </form>
+  </dialog>
+
+  <input id="imageInput" type="file" accept="image/*" hidden>
+  <input id="pdfInput" type="file" accept="application/pdf" hidden>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
