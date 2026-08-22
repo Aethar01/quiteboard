@@ -66,7 +66,6 @@ function listBoards() {
 }
 
 app.get('/api/health', (req, res) => res.json({ ok: true, version: '0.1.0' }));
-
 app.get('/api/boards', (req, res) => res.json(listBoards()));
 
 app.post('/api/boards', (req, res) => {
@@ -205,7 +204,9 @@ io.on('connection', (socket) => {
   });
 });
 
-app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
+// Express 5 requires a named wildcard. This catches client-side board URLs
+// without interfering with /api, /assets, /pdfjs, or Socket.IO routes above.
+app.get('/{*splat}', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
 
 server.listen(PORT, '0.0.0.0', () => {
   console.log(`Quiteboard listening on http://0.0.0.0:${PORT}`);
