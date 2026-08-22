@@ -1,0 +1,16 @@
+{
+  "name": "quiteboard",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Lightweight self-hosted collaborative whiteboard with PDF page import",
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "dependencies": {
+    "express": "5.2.1",
+    "multer": "2.2.0",
+    "pdfjs-dist": "6.2.108",
+    "socket.io": "4.8.3"
+  }
+}
